@@ -1,7 +1,7 @@
 // utils
 import * as methods from '@utils/methods';
 
-import { DELETE, GET, POST, PUT } from '../request';
+import { GET } from '../request';
 
 /**
  * fetch movie list
