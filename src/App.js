@@ -6,13 +6,15 @@ import MainLayout from '@layout/MainLayout';
 
 // component
 import { Movies } from '@modules';
-
+/*
+        <Route path='/movies' component={Movies} />
+*/
 const App = () => {
   return (
     <BrowserRouter>
       <MainLayout>
-        <Route path="/" component={Movies} exact />
-        <Route path='/movies' component={Movies}/>
+        <Route path="*" component={Movies} exact />
+
       </MainLayout>
 
     </BrowserRouter>

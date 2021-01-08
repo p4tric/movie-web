@@ -19,16 +19,12 @@ module.exports = {
   webpack: {
     alias: {
       '@images': path.resolve(__dirname, 'src/assets/images'),
-      '@styles': path.resolve(__dirname, 'src/assets/styles'),
       '@components': path.resolve(__dirname, 'src/components'),
-      '@constant': path.resolve(__dirname, 'src/constant'),
       '@layout': path.resolve(__dirname, 'src/layout'),
       '@modules': path.resolve(__dirname, 'src/modules'),
-      '@pages': path.resolve(__dirname, 'src/pages'),
       '@redux': path.resolve(__dirname, 'src/redux'),
       '@service': path.resolve(__dirname, 'src/service'),
       '@utils': path.resolve(__dirname, 'src/utils'),
-      '@hooks': path.resolve(__dirname, 'src/hooks'),
     },
   },
   devServer: {

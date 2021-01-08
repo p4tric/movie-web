@@ -16,13 +16,13 @@ import 'antd/dist/antd.css';
 import './index.less';
 
 const { Footer, Header, Content } = Layout;
-const { Text, Title } = Typography;
+const { Title } = Typography;
 
 const MainLayout = ({ children }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { movieDetail } = useSelector(state => state);
-  // <img className="logo" src={moviesLogo} alt="Movies" />
+
   const handleBack = () => {
     dispatch(setMovieDetail(null));
     history.push('/');

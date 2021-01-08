@@ -8,6 +8,7 @@ import MovieGridSection from './sections/MovieGridSection';
 const MWrapper = () => {
   const history = useHistory();
   const { location } = history;
+  
   return location.search === '' ? <MovieGridSection /> : <MovieDetailSection />;
 };
 

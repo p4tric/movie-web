@@ -4,7 +4,7 @@ import React from 'react';
 import { Form, Select, Button, Row } from 'antd';
 
 // redux
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getMovieList, setMovieList, setLoading } from '@redux/actions';
 
 // utils
@@ -18,38 +18,43 @@ const { Option } = Select;
 const FilterContainer = () => {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
-  const { movies } = useSelector(state => state);
 
   const handleGenreChange = (e) => {
-    if (!form.getFieldValue('year')) {
-      dispatch(getMovieList(''))
-      .then((res) => {
-        const filtered = res.filter(movie => movie.genre === e);
-        dispatch(setMovieList(filtered));
-      })
-      .finally(() => {
-        dispatch(setLoading(false));
+    const selectedYear = form.getFieldValue('year');
+    dispatch(getMovieList(''))
+    .then((res) => {
+      const filtered = res.filter(movie => {
+        return !selectedYear
+        ? movie.genre === e
+        : movie.genre === e && movie.productionYear === +selectedYear;
       });
-    } else {
-      const filtered = movies.filter(movie => movie.genre === e);
       dispatch(setMovieList(filtered));
-    }
+    })
+    .catch(err => {
+      form.resetFields();
+    })
+    .finally(() => {
+      dispatch(setLoading(false));
+    });
   };
 
   const handleYearChange = (e) => {
-    if (!form.getFieldValue('genre')) {
-      dispatch(getMovieList(''))
-      .then((res) => {
-        const filtered = res.filter(movie => movie.productionYear === +e);
-        dispatch(setMovieList(filtered));
-      })
-      .finally(() => {
-        dispatch(setLoading(false));
+    const selectedGenre = form.getFieldValue('genre');
+    dispatch(getMovieList(''))
+    .then((res) => {
+      const filtered = res.filter(movie => {
+        return !selectedGenre
+        ? movie.productionYear === +e
+        : movie.productionYear === +e && movie.genre === selectedGenre
       });
-    } else {
-      const filtered = movies.filter(movie => movie.productionYear === +e);
       dispatch(setMovieList(filtered));
-    }
+    })
+    .catch(err => {
+      form.resetFields();
+    })
+    .finally(() => {
+      dispatch(setLoading(false));
+    });
   };
 
   const handleClearFilter = () => {
